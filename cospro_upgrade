@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COS PRO 자격증 안내</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=DM+Mono:wght@500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root {
+      --bg:        #f5f3ee;
+      --surface:   #ffffff;
+      --accent:    #1a3c6e;
+      --accent2:   #e85d2f;
+      --text:      #1a1a1a;
+      --muted:     #6b6b6b;
+      --border:    #d8d4cc;
+      --tag-bg:    #e8f0fc;
+      --tag-color: #1a3c6e;
+
+      --font-head: 'Noto Sans KR', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+
+      --radius: 12px;
+      --shadow: 0 2px 16px rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-head);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 820px;
+      background: var(--surface);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .header {
+      background: var(--accent);
+      color: #fff;
+      padding: 36px 48px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: var(--accent2);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+    .header h1 span {
+      color: #ffd166;
+    }
+
+    .header-sub {
+      margin-top: 10px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .header-tag-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .header-tag {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+
+    .content {
+      padding: 40px 48px;
+      display: grid;
+      gap: 36px;
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .section-left { flex: 1; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .section-title .num {
+      width: 30px; height: 30px;
+      background: var(--accent2);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      border-left: 3px solid var(--accent);
+    }
+    .step-icon {
+      font-size: 18px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-body strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .step-body p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .step-body a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .step-body a:hover { text-decoration: underline; }
+
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .info-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      border-left: 3px solid var(--accent2);
+    }
+    .info-card strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+    .info-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .qr-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .qr-wrap {
+      background: #fff;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 10px;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-wrap canvas,
+    .qr-wrap img {
+      width: 100px !important;
+      height: 100px !important;
+    }
+    .qr-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.4;
+      max-width: 120px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer {
+      background: var(--accent);
+      color: rgba(255,255,255,0.7);
+      font-size: 12px;
+      text-align: center;
+      padding: 14px 48px;
+      line-height: 1.6;
+    }
+    .footer strong { color: #ffd166; }
+
+    @media (max-width: 600px) {
+      .header { padding: 28px 24px; }
+      .content { padding: 28px 24px; }
+      .section { grid-template-columns: 1fr; }
+      .qr-box { flex-direction: row; justify-content: flex-start; }
+      .footer { padding: 14px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+<!-- HEADER 그대로 -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="badge">YBM IT</div>
+      <h1>COS <span>PRO</span><br>자격증 안내</h1>
+      <p class="header-sub">
+        Coding Specialist — Programming<br>
+        코딩 전문가를 위한 국가공인 자격증
+      </p>
+      <div class="header-tag-group">
+        <span class="header-tag">Python</span>
+        <span class="header-tag">Java</span>
+        <span class="header-tag">C / C++</span>
+        <span class="header-tag">1급 · 2급</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- 1 접수방법 (샘플 step만 제거) -->
+<div class="section">
+  <div class="section-left">
+    <div class="section-title">
+      <span class="num">1</span>
+      접수방법 안내
+    </div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-icon">🖥️</div>
+        <div class="step-body">
+          <strong>YBM IT 공식 사이트 접속</strong>
+          <p>ybmit.com → COS PRO 메뉴 → 정기검정 접수</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">📝</div>
+        <div class="step-body">
+          <strong>회원가입 및 로그인</strong>
+          <p>YBM IT 계정으로 로그인 후 응시 급수·언어 선택</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-icon">💳</div>
+        <div class="step-body">
+          <strong>결제 및 접수 완료</strong>
+          <p>응시료 결제 → 수험표 출력 / 저장 (시험 당일 지참)</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- 2 혜택 -->
+<div class="section">
+  <div class="section-left">
+    <div class="section-title">
+      <span class="num">2</span>
+      혜택 안내
+    </div>
+    <div class="info-cards">
+      <div class="info-card">
+        <strong>🍪 다과 제공</strong>
+        <p>시험 당일 간단한 간식 및 음료가 제공됩니다.</p>
+      </div>
+      <div class="info-card">
+        <strong>🎓 합격 장학금 지급</strong>
+        <p>
+          COS PRO 합격 시<br>
+          2급: 10만원 / 1급: 20만원 장학금 지급
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- 3 문제은행 (그대로 + QR 이동) -->
+<div class="section">
+  <div class="section-left">
+    <div class="section-title">
+      <span class="num">3</span>
+      문제은행 안내
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <strong>🐍 구름EDU — COS PRO 2급 기출문제 (Python)</strong>
+        <p>
+          실제 기출 유형을 온라인으로 바로 풀어볼 수 있는 무료 강의입니다.<br>
+          코드 실행 환경이 내장되어 별도 설치 없이 브라우저에서 학습 가능합니다.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <strong>✅ 활용 방법</strong>
+        <p>
+          ① 아래 QR 또는 링크로 구름EDU 접속<br>
+          ② "무료 수강 신청" 클릭 → 문제 풀기 시작<br>
+          ③ 단원별 기출문제로 출제 패턴 반복 학습
+        </p>
+      </div>
+
+      <div class="info-card">
+        <strong>💡 학습 팁</strong>
+        <p>
+          COS PRO는 <strong>빈칸 채우기</strong> 형식으로 출제됩니다.<br>
+          완성된 코드를 작성하는 것이 아닌, 주어진 코드의 일부를 채우는 방식이므로<br>
+          기출 유형을 반복적으로 풀어보는 것이 가장 효과적입니다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="qr-box">
+    <div class="qr-wrap" id="qr-goorm"></div>
+    <div class="qr-label">📚 구름EDU<br>기출문제 풀기</div>
+
+    <div class="qr-wrap" id="qr-ybm" style="margin-top:10px;"></div>
+    <div class="qr-label">📥 샘플문제<br>다운로드</div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <strong>COS PRO</strong> · Coding Specialist — Programming &nbsp;|&nbsp;
+  주관: YBM IT &nbsp;|&nbsp;
+  문의: <strong>SW중심대학사업단 033-760-1472</strong> &nbsp;|&nbsp;
+  포스터 제작 : 황성현
+</div>
+
+</div>
+
+<script>
+new QRCode(document.getElementById("qr-ybm"), {
+  text: "https://ybmit.com/cos_pro/cos_pro_r_test.jsp",
+  width: 100,
+  height: 100
+});
+
+new QRCode(document.getElementById("qr-goorm"), {
+  text: "https://edu.goorm.io/lecture/17033/cos-pro-2%EA%B8%89-%EA%B8%B0%EC%B6%9C%EB%AC%B8%EC%A0%9C-python",
+  width: 100,
+  height: 100
+});
+</script>
+
+<style>
+  /* 🔧 세로 길이 압축 (내용 변경 없음) */
+
+.header {
+  padding: 30px 48px 26px; /* 기존보다 살짝 줄임 */
+}
+
+.content {
+  padding: 32px 48px; /* 40 → 32 */
+  gap: 28px; /* 36 → 28 */
+}
+
+.section {
+  gap: 20px; /* 28 → 20 */
+}
+
+.section-title {
+  margin-bottom: 12px; /* 16 → 12 */
+}
+
+.steps {
+  gap: 8px; /* 10 → 8 */
+}
+
+.step {
+  padding: 12px 16px; /* 14 → 12 */
+}
+
+.info-cards {
+  gap: 8px;
+}
+
+.info-card {
+  padding: 12px 16px;
+}
+
+.header-tag-group {
+  margin-top: 14px; /* 18 → 14 */
+}
+
+.divider {
+  margin: 4px 0; /* 줄 사이 간격 축소 */
+}
+
+.footer {
+  padding: 12px 48px; /* 14 → 12 */
+}
+</style>
+
+</body>
+</html>
